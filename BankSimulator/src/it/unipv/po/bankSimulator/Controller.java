@@ -4,6 +4,6 @@ import it.unipv.po.bankmodel.BankModel;
 
 public class Controller {
 	
-	private BankModel bankModel = new BankModel("Test Bank");
+	private BankModel bankModel = new BankModel("Default name");
 
 }
