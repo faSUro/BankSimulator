@@ -1,4 +1,4 @@
-package it.unipv.po.bankSimulator.bankView;
+package it.unipv.po.bankSimulator.bankView.bankerGui;
 
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import it.unipv.po.bankmodel.account.AccountType;
 
 @SuppressWarnings("serial")
 public class BankerFrame extends JFrame {
@@ -44,9 +42,7 @@ public class BankerFrame extends JFrame {
 		String[] accountType = {"Bank account", "Deposit account", "Web account"};
 		JComboBox<String> accountTypeSelection = new JComboBox<String>(accountType); //types of account that can be created
 		JButton addAccountButton = new JButton("Add account"); //this button add a new account
-		addAccountPanel.add(fiscalCodeLabel);
-		addAccountPanel.add(addAccountTextField);
-		addAccountPanel.add(accountTypeSelection);
+		addAccountPanel.add(fiscalCodeLabel); addAccountPanel.add(addAccountTextField);	addAccountPanel.add(accountTypeSelection);
 		addAccountPanel.add(addAccountButton);
 		
 		JLabel emptyLabel1 = new JLabel("                                                                     "
@@ -57,18 +53,11 @@ public class BankerFrame extends JFrame {
 		JTextField amountTextField = new JTextField(20); //insert here the amount to add to/subtract from the account
 		JLabel emptyLabel2 = new JLabel("                    ");
 		JButton okButton = new JButton("  Ok  "); //this button performs the operation
-		operationPanel.add(emptyLabel1);
-		operationPanel.add(ibanLabel);
-		operationPanel.add(ibanTextField);
-		operationPanel.add(amountLabel);
-		operationPanel.add(amountTextField);
-		operationPanel.add(emptyLabel2);
+		operationPanel.add(emptyLabel1); operationPanel.add(ibanLabel);	operationPanel.add(ibanTextField);
+		operationPanel.add(amountLabel); operationPanel.add(amountTextField); operationPanel.add(emptyLabel2);
 		operationPanel.add(okButton);
 		
-		panel.add(emptyPanel1);
-		panel.add(checkPanel);
-		panel.add(addAccountPanel);
-		panel.add(operationPanel);
+		panel.add(emptyPanel1); panel.add(checkPanel); panel.add(addAccountPanel); panel.add(operationPanel);
 		panel.add(emptyPanel2);
 		
 		setLocationRelativeTo(null); //the frame will be in the center of the screen

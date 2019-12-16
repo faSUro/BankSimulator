@@ -1,4 +1,4 @@
-package it.unipv.po.bankSimulator.bankView;
+package it.unipv.po.bankSimulator.bankView.userGui;
 
 import javax.swing.JFrame;
 
