@@ -4,10 +4,10 @@ import it.unipv.po.bankSimulator.bankView.BankCreatorFrame;
 import it.unipv.po.bankmodel.BankModel;
 
 /**
- * The BankSimulator program implements an application that simulates a a bank,
+ * The BankSimulator program implements an application that simulates a bank,
  * in a very simple way. 
  * There are two GUI (one for the banker and one for the user) that allow to 
- * perform bank account operations (add an account, * deposit and withdraw).
+ * perform bank account operations (add an account, deposit and withdraw).
  * There are three types of account: bank account, deposit account and web account.
  * 
  * @author fasuro
