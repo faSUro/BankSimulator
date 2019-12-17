@@ -17,6 +17,14 @@ public class UserFrame extends JFrame {
 	public static final int WIDTH = 600;
 	public static final int HEIGHT = 500;
 	
+	private JTextField fiscalCodeTextField;
+	private JTextField setPasswordTextField;
+	private JButton createAccountButton;
+	
+	private JTextField ibanTextField;
+	private JTextField passwordTextField;
+	private JButton logInButton;
+	
 	public UserFrame(String name) {
 		setTitle(name + "'s user");
 		setSize(WIDTH, HEIGHT);
@@ -33,30 +41,26 @@ public class UserFrame extends JFrame {
 		JPanel logInPanel = new JPanel(); //allows to log in and perform operations
 		
 		JLabel fiscalCodeLabel = new JLabel("               Fiscal code: ");
-		JTextField fiscalCodeTextField = new JTextField(20); //enter the fiscal code here to create a new account
+		fiscalCodeTextField = new JTextField(20); //enter the fiscal code here to create a new account
 		JLabel emptyLabel1 = new JLabel("                ");
 		JLabel setPasswordLabel = new JLabel("                    Set password: "); 
-		JTextField setPasswordTextField = new JTextField(20); //enter the password to set here
+		setPasswordTextField = new JTextField(20); //enter the password to set here
 		JLabel emptyLabel2 = new JLabel("                ");
-		JButton createAccountButton = new JButton("    Create account    "); //creates a new account
+		createAccountButton = new JButton("    Create account    "); //creates a new account
 		createAccountPanel.add(fiscalCodeLabel); createAccountPanel.add(fiscalCodeTextField);
 		createAccountPanel.add(emptyLabel1); createAccountPanel.add(setPasswordLabel); createAccountPanel.add(setPasswordTextField); 
 		createAccountPanel.add(emptyLabel2); createAccountPanel.add(createAccountButton);
 		
-		JLabel ibanLabel = new JLabel("            Iban: ");
-		JTextField ibanTextField = new JTextField(20); //enter the iban here to log in
-		JLabel emptyLabel3 = new JLabel("                    ");
-		JLabel passwordLabel = new JLabel("                                  Password: ");
-		JTextField passwordTextField = new JTextField(20); //enter the password here to log in
-		JLabel emptyLabel4 = new JLabel("                                 ");
-		JLabel amountLabel = new JLabel("                               Amount: ");
-		JTextField amountTextField = new JTextField(20); //enter the amount to add to/subtract from the account here
-		JLabel emptyLabel5 = new JLabel("                                 ");
-		JButton submitButton = new JButton("       Submit operation      "); //performs the operation
+		JLabel ibanLabel = new JLabel("                   Iban: ");
+		ibanTextField = new JTextField(20); //enter the iban here to log in
+		JLabel emptyLabel3 = new JLabel("                              ");
+		JLabel passwordLabel = new JLabel("                   Password: ");
+		passwordTextField = new JTextField(20); //enter the password here to log in
+		JLabel emptyLabel4 = new JLabel("                    ");
+		logInButton = new JButton("       Log in      "); //performs the operation
 		logInPanel.add(ibanLabel); logInPanel.add(ibanTextField); logInPanel.add(emptyLabel3);
-		logInPanel.add(passwordLabel); logInPanel.add(passwordTextField); logInPanel.add(emptyLabel4); 
-		logInPanel.add(amountLabel); logInPanel.add(amountTextField); logInPanel.add(emptyLabel5);
-		logInPanel.add(submitButton);
+		logInPanel.add(passwordLabel); logInPanel.add(passwordTextField); logInPanel.add(emptyLabel4);
+		logInPanel.add(logInButton);
 		
 		panel.add(emptyPanel); panel.add(createAccountPanel); panel.add(logInPanel);
 		
@@ -67,6 +71,30 @@ public class UserFrame extends JFrame {
 		setLocation(5*screenWidth/8,screenHeight/4);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);	
+	}
+
+	public String getFiscalCode() {
+		return fiscalCodeTextField.getText();
+	}
+
+	public String getSetPassword() {
+		return setPasswordTextField.getText();
+	}
+
+	public JButton getCreateAccountButton() {
+		return createAccountButton;
+	}
+
+	public String getIban() {
+		return ibanTextField.getText();
+	}
+
+	public String getPassword() {
+		return passwordTextField.getText();
+	}
+
+	public JButton getLogInButton() {
+		return logInButton;
 	}
 
 }

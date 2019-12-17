@@ -3,15 +3,16 @@ package it.unipv.po.bankSimulator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
 import it.unipv.po.bankSimulator.bankView.BankCreatorFrame;
 import it.unipv.po.bankSimulator.bankView.IbanDisplayer;
 import it.unipv.po.bankSimulator.bankView.bankerGui.AccountStateDisplayer;
 import it.unipv.po.bankSimulator.bankView.bankerGui.BankerFrame;
+import it.unipv.po.bankSimulator.bankView.userGui.BalanceDisplayer;
+import it.unipv.po.bankSimulator.bankView.userGui.LoggedInFrame;
 import it.unipv.po.bankSimulator.bankView.userGui.UserFrame;
 import it.unipv.po.bankmodel.BankModel;
 import it.unipv.po.bankmodel.account.AccountType;
+import it.unipv.po.bankmodel.account.WebAccount;
 
 public class Controller {
 	
@@ -47,6 +48,7 @@ public class Controller {
 				userFrame = new UserFrame(bankName);
 				
 				setBankerListeners();
+				setUserListeners();
 				
 				bankCreatorFrame.dispose();
 			}
@@ -65,8 +67,8 @@ public class Controller {
 		});	
 		
 		/*
-		 * This listener allows to add an account by completing the form 
-		 * fiscal code/account type and then clicking the addAccountButton.
+		 * This listener allows to add an account by filling out the fiscal 
+		 * code/account type form and then clicking the addAccountButton.
 		 */
 		bankerFrame.getAddAccountButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,7 +91,7 @@ public class Controller {
 		
 		/*
 		 * This listener allows to perform operations on the (non web type) accounts 
-		 * by completing the form IBAN/amount and then clicking the submitButton. 
+		 * by filling out the IBAN/amount form and then clicking the submitButton. 
 		 */
 		bankerFrame.getSubmitButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,9 +102,58 @@ public class Controller {
 	
 	public void setUserListeners() {		
 		/*
-		 * 
+		 * This listener allows to add a web type account by filling out the fiscal
+		 * code/set password form and then clicking the createAccountButton.
 		 */
+		userFrame.getCreateAccountButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String iban = bankModel.genIban();
+				new IbanDisplayer(iban);
+				
+				bankModel.addAccount(userFrame.getFiscalCode(), AccountType.WEB);
+				(((WebAccount) bankModel.getAccount(iban))).changePassword("changeme", userFrame.getSetPassword());
+			}
+		});
 		
+		/*
+		 * This listener allows to log in by filling out the IBAN/password form and
+		 * then clicking the logInButton.
+		 */
+		userFrame.getLogInButton().addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				String iban = userFrame.getIban();
+				
+				if ((((WebAccount) bankModel.getAccount(iban))).logIn(userFrame.getPassword())) {
+					LoggedInFrame loggedInFrame = new LoggedInFrame(iban);
+					BalanceDisplayer balanceDisplayer = new BalanceDisplayer(iban);
+					bankModel.addObserver(balanceDisplayer);
+					setLoggedInListeners(loggedInFrame, balanceDisplayer, iban);
+				}
+			}
+		});
+	}
+	
+	public void setLoggedInListeners(LoggedInFrame li, BalanceDisplayer balanceDisplayer, String iban) {
+		/*
+		 * This listener allows to see the IBAN related balance by clicking the
+		 * checkAccountButton.
+		 */
+		li.getCheckAccountButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				balanceDisplayer.setVisible(true);;
+			}
+		});
+		
+		/*
+		 * This listener allows to perform operations on the account
+		 * by filling out the amount form and then clicking the submitButton. 
+		 */
+		li.getSubmitButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bankModel.operation(iban, li.getAmount());
+			}
+		});
 	}
 
 }

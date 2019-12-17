@@ -32,7 +32,8 @@ public class AccountStateDisplayer extends JFrame implements Observer {
 		panel.add(accountStateText);
 		
 		setLocationRelativeTo(null); //the frame will be in the center of the screen
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //when the frame is closed it's
+														//hidden
 	}
 
 	@Override
