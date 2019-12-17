@@ -32,7 +32,6 @@ public class IbanDisplayer extends JFrame {
 		panel.add(emptyPanel); panel.add(ibanPanel);
 		
 		setLocationRelativeTo(null); //the frame will be in the center of the screen
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	}
 

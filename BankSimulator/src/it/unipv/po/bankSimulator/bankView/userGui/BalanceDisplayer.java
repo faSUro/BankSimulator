@@ -26,7 +26,7 @@ public class BalanceDisplayer extends JFrame {
 		JPanel emptyPanel = new JPanel(); //used to get a better looking layout
 		JPanel balancePanel = new JPanel(); //contains the balance
 		
-		JLabel ibanLabel = new JLabel("Your balance: " + balance + "$"); //displays the balance
+		JLabel ibanLabel = new JLabel("Your balance: " + balance + "€"); //displays the balance
 		balancePanel.add(ibanLabel);
 		
 		panel.add(emptyPanel); panel.add(balancePanel);

@@ -42,10 +42,10 @@ public class AccountStateDisplayer extends JFrame implements Observer {
 	}
 
 	private String genText(TreeMap<String, Account> accountSet) {
-		String text = null;
+		String text = "";
 		
 		for (String key : accountSet.keySet()) {
-			text += key + ": " + accountSet.get(key) + "\n";
+			text += key + ": " + accountSet.get(key).getBalance() + "€" + "\n";
 		}
 		
 		return text;

@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 import it.unipv.po.bankSimulator.bankView.BankCreatorFrame;
+import it.unipv.po.bankSimulator.bankView.IbanDisplayer;
 import it.unipv.po.bankSimulator.bankView.bankerGui.AccountStateDisplayer;
 import it.unipv.po.bankSimulator.bankView.bankerGui.BankerFrame;
 import it.unipv.po.bankSimulator.bankView.userGui.UserFrame;
@@ -54,7 +55,8 @@ public class Controller {
 	
 	public void setBankerListeners() {		
 		/*
-		 * This listener allows to see the AccountStateDisplayer.
+		 * This listener allows to see the AccountStateDisplayer by clicking the
+		 * checkButton.
 		 */
 		bankerFrame.getCheckButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -62,10 +64,15 @@ public class Controller {
 			}
 		});	
 		
+		/*
+		 * This listener allows to add an account by completing the form 
+		 * fiscal code/account type and then clicking the addAccountButton.
+		 */
 		bankerFrame.getAddAccountButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String fiscalCode = bankerFrame.getFiscalCode();
+				new IbanDisplayer(bankModel.genIban());
 				
+				String fiscalCode = bankerFrame.getFiscalCode();				
 				switch (bankerFrame.getAccountType()) {
 				case "Bank account":
 					bankModel.addAccount(fiscalCode, AccountType.BANK);
@@ -79,6 +86,23 @@ public class Controller {
 				}
 			}
 		});
+		
+		/*
+		 * This listener allows to perform operations on the (non web type) accounts 
+		 * by completing the form IBAN/amount and then clicking the submitButton. 
+		 */
+		bankerFrame.getSubmitButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bankModel.operation(bankerFrame.getIban(), bankerFrame.getAmount());
+			}
+		});
+	}
+	
+	public void setUserListeners() {		
+		/*
+		 * 
+		 */
+		
 	}
 
 }

@@ -21,8 +21,12 @@ public class BankerFrame extends JFrame {
 	private JButton checkButton;
 	
 	private JTextField fiscalCodeTextField;
-	JComboBox<String> accountTypeSelection;
-	JButton addAccountButton;
+	private JComboBox<String> accountTypeSelection;
+	private JButton addAccountButton;
+	
+	private JTextField ibanTextField;
+	private JTextField amountTextField;
+	private JButton submitButton;
 	
 	public BankerFrame(String name) {
 		setTitle(name + "'s banker");
@@ -56,14 +60,14 @@ public class BankerFrame extends JFrame {
 		JLabel emptyLabel1 = new JLabel("                                                                     "
 				+ "                                               ");
 		JLabel ibanLabel = new JLabel("                   IBAN:    "); 
-		JTextField ibanTextField = new JTextField(20); //enter the iban of the account here
+		ibanTextField = new JTextField(20); //enter the iban of the account here
 		JLabel amountLabel = new JLabel("                                           Amount: ");
-		JTextField amountTextField = new JTextField(20); //enter the amount to add to/subtract from the account here
+		amountTextField = new JTextField(20); //enter the amount to add to/subtract from the account here
 		JLabel emptyLabel2 = new JLabel("                    ");
-		JButton okButton = new JButton("  Submit  "); //performs the operation
+		submitButton = new JButton("  Submit  "); //performs the operation
 		operationPanel.add(emptyLabel1); operationPanel.add(ibanLabel);	operationPanel.add(ibanTextField);
 		operationPanel.add(amountLabel); operationPanel.add(amountTextField); operationPanel.add(emptyLabel2);
-		operationPanel.add(okButton);
+		operationPanel.add(submitButton);
 		
 		panel.add(emptyPanel1); panel.add(checkPanel); panel.add(addAccountPanel); panel.add(operationPanel);
 		panel.add(emptyPanel2);
@@ -91,6 +95,18 @@ public class BankerFrame extends JFrame {
 
 	public JButton getAddAccountButton() {
 		return addAccountButton;
+	}
+	
+	public String getIban() {
+		return ibanTextField.getText();
+	}
+
+	public double getAmount() {
+		return Double.parseDouble(amountTextField.getText());
+	}
+
+	public JButton getSubmitButton() {
+		return submitButton;
 	}
 
 }
