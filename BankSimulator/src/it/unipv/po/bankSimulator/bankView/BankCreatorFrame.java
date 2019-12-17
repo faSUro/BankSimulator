@@ -28,14 +28,14 @@ public class BankCreatorFrame extends JFrame {
 		
 		panel.setLayout(new GridLayout(3, 1));
 		
-		JPanel emptyPanel = new JPanel(); //this empty panel is used to get a better looking layout
-		JPanel textFieldPanel = new JPanel(); //this panel allows to name (and create) a bank
+		JPanel emptyPanel = new JPanel(); //used to get a better looking layout
+		JPanel textFieldPanel = new JPanel(); //allows to name (and create) a bank
 		
 		JLabel infoLabel = new JLabel("Insert here the name of the bank you want to create: ");
 		
 		textFieldPanel.add(infoLabel);
-		textFieldPanel.add(bankName); //the user has to insert here the name of the bank
-		textFieldPanel.add(createButton); //this button causes this frame to close and allows the
+		textFieldPanel.add(bankName); //enter the name of the bank here
+		textFieldPanel.add(createButton); //causes this frame to close and allows the
 		                                  //access to BankerFrame and UserFrame
 		
 		panel.add(emptyPanel);

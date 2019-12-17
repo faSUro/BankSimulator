@@ -1,4 +1,4 @@
-package it.unipv.po.bankSimulator.bankView;
+package it.unipv.po.bankSimulator.bankView.userGui;
 
 import java.awt.Container;
 import java.awt.GridLayout;
@@ -8,13 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class IbanDisplayer extends JFrame {
+public class BalanceDisplayer extends JFrame {
 	
 	public static int WIDTH = 300;
 	public static int HEIGHT = 150;
 	
-	public IbanDisplayer(String iban) {
-		setTitle("Your IBAN");
+	public BalanceDisplayer(String balance) {
+		setTitle("Your balance");
 		setSize(WIDTH, HEIGHT);
 		
 		JPanel panel = new JPanel();
@@ -23,13 +23,13 @@ public class IbanDisplayer extends JFrame {
 		
 		panel.setLayout(new GridLayout(3, 1));
 		
-		JPanel emptyPanel = new JPanel(); //this empty panel is used to get a better looking layout
-		JPanel ibanPanel = new JPanel(); //this panel contains the generated iban
+		JPanel emptyPanel = new JPanel(); //used to get a better looking layout
+		JPanel balancePanel = new JPanel(); //contains the balance
 		
-		JLabel ibanLabel = new JLabel("Your IBAN is: " + iban); //this label displays the iban
-		ibanPanel.add(ibanLabel);
+		JLabel ibanLabel = new JLabel("Your balance: " + balance + "$"); //displays the balance
+		balancePanel.add(ibanLabel);
 		
-		panel.add(emptyPanel); panel.add(ibanPanel);
+		panel.add(emptyPanel); panel.add(balancePanel);
 		
 		setLocationRelativeTo(null); //the frame will be in the center of the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
