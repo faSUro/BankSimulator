@@ -18,8 +18,8 @@ public class BankCreatorFrame extends JFrame {
 	private JTextField bankName = new JTextField(20);
 	private JButton createButton = new JButton(" Create ");
 	
-	public BankCreatorFrame(String name) {
-		setTitle(name);
+	public BankCreatorFrame() {
+		setTitle("Create your bank");
 		setSize(WIDTH, HEIGHT);
 		
 		JPanel panel = new JPanel();
@@ -44,6 +44,14 @@ public class BankCreatorFrame extends JFrame {
 		setLocationRelativeTo(null); //the frame will be in the center of the screen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);				
+	}
+
+	public JButton getCreateButton() {
+		return createButton;
+	}
+
+	public String getBankName() {
+		return bankName.getText();
 	}
 
 }

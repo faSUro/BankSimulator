@@ -17,7 +17,7 @@ public class BankerFrame extends JFrame {
 	public static final int HEIGHT = 525;
 	
 	public BankerFrame(String name) {
-		setTitle(name);
+		setTitle(name + "'s banker");
 		setSize(WIDTH, HEIGHT);
 		
 		JPanel panel = new JPanel();
@@ -38,11 +38,11 @@ public class BankerFrame extends JFrame {
 		checkPanel.add(checkButton);
 		
 		JLabel fiscalCodeLabel = new JLabel("     Fiscal code: ");
-		JTextField addAccountTextField = new JTextField(20); //insert here the fiscal code to create a new account
+		JTextField fiscalCodeTextField = new JTextField(20); //insert here the fiscal code to create a new account
 		String[] accountType = {"Bank account", "Deposit account", "Web account"};
 		JComboBox<String> accountTypeSelection = new JComboBox<String>(accountType); //types of account that can be created
 		JButton addAccountButton = new JButton("Add account"); //this button add a new account
-		addAccountPanel.add(fiscalCodeLabel); addAccountPanel.add(addAccountTextField);	addAccountPanel.add(accountTypeSelection);
+		addAccountPanel.add(fiscalCodeLabel); addAccountPanel.add(fiscalCodeTextField);	addAccountPanel.add(accountTypeSelection);
 		addAccountPanel.add(addAccountButton);
 		
 		JLabel emptyLabel1 = new JLabel("                                                                     "
