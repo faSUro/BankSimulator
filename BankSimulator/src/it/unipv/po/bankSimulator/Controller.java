@@ -91,6 +91,7 @@ public class Controller {
 					setPasswordListeners(setPass, iban, 0.0);
 					break;
 				}
+				bankerFrame.getFiscalCodeTextField().setText("");
 			}
 		});
 		
@@ -110,6 +111,8 @@ public class Controller {
 				} else {
 					bankModel.operation(iban, amount);
 				}
+				bankerFrame.getIbanTextField().setText("");
+				bankerFrame.getAmountTextField().setText("");
 			}
 		});
 	}
@@ -126,6 +129,9 @@ public class Controller {
 				
 				bankModel.addAccount(userFrame.getFiscalCode(), AccountType.WEB);
 				(((WebAccount) bankModel.getAccount(iban))).changePassword("changeme", userFrame.getSetPassword());
+				
+				userFrame.getFiscalCodeTextField().setText("");
+				userFrame.getSetPasswordTextField().setText("");
 			}
 		});
 		
@@ -144,6 +150,9 @@ public class Controller {
 					bankModel.addObserver(balanceDisplayer);
 					setLoggedInListeners(loggedInFrame, balanceDisplayer, iban);
 				}
+				
+				userFrame.getIbanTextField().setText("");
+				userFrame.getPasswordTextField().setText("");
 			}
 		});
 	}
@@ -166,6 +175,8 @@ public class Controller {
 		li.getSubmitButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bankModel.operation(iban, li.getAmount());
+				
+				li.getAmountTextField().setText("");
 			}
 		});
 	}

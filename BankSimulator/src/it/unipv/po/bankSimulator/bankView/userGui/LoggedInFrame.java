@@ -36,23 +36,22 @@ public class LoggedInFrame extends JFrame {
 		
 		//empty panels and labels are used to get a better looking layout
 		JPanel emptyPanel = new JPanel();
-		JPanel checkAccountPanel = new JPanel();
-		JPanel operationPanel = new JPanel();
+		JPanel checkAccountPanel = new JPanel(); //allows to check the balance of the account
+		JPanel operationPanel = new JPanel(); //allows to perform operations
 		
-		checkAccountButton = new JButton("  Check account  ");
+		checkAccountButton = new JButton("  Check account  "); //button to check the balance
 		checkAccountPanel.add(checkAccountButton);
 		
 		JLabel amountLabel = new JLabel("Amount: ");
-		amountTextField = new JTextField(20);
-		submitButton = new JButton("  Submit  ");
+		amountTextField = new JTextField(20); //enter the amount to add to/subtract from the account here
+		submitButton = new JButton("  Submit  "); //click to perform the operation
 		operationPanel.add(amountLabel); operationPanel.add(amountTextField);
 		operationPanel.add(submitButton);
 		
 		panel.add(emptyPanel); panel.add(checkAccountPanel);
 		panel.add(operationPanel);
 		
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null); //the frame will be in the center of the screen
 		setVisible(true);	
 	}
 
@@ -62,6 +61,10 @@ public class LoggedInFrame extends JFrame {
 
 	public double getAmount() {
 		return Double.parseDouble(amountTextField.getText());
+	}
+
+	public JTextField getAmountTextField() {
+		return amountTextField;
 	}
 
 	public JButton getSubmitButton() {

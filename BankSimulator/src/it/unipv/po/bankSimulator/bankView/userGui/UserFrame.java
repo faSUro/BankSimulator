@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
@@ -18,11 +19,11 @@ public class UserFrame extends JFrame {
 	public static final int HEIGHT = 500;
 	
 	private JTextField fiscalCodeTextField;
-	private JTextField setPasswordTextField;
+	private JPasswordField setPasswordTextField;
 	private JButton createAccountButton;
 	
 	private JTextField ibanTextField;
-	private JTextField passwordTextField;
+	private JPasswordField passwordTextField;
 	private JButton logInButton;
 	
 	public UserFrame(String name) {
@@ -44,18 +45,18 @@ public class UserFrame extends JFrame {
 		fiscalCodeTextField = new JTextField(20); //enter the fiscal code here to create a new account
 		JLabel emptyLabel1 = new JLabel("                ");
 		JLabel setPasswordLabel = new JLabel("                    Set password: "); 
-		setPasswordTextField = new JTextField(20); //enter the password to set here
+		setPasswordTextField = new JPasswordField(20); //enter the password to set here
 		JLabel emptyLabel2 = new JLabel("                ");
 		createAccountButton = new JButton("    Create account    "); //creates a new account
 		createAccountPanel.add(fiscalCodeLabel); createAccountPanel.add(fiscalCodeTextField);
 		createAccountPanel.add(emptyLabel1); createAccountPanel.add(setPasswordLabel); createAccountPanel.add(setPasswordTextField); 
 		createAccountPanel.add(emptyLabel2); createAccountPanel.add(createAccountButton);
 		
-		JLabel ibanLabel = new JLabel("                   Iban: ");
+		JLabel ibanLabel = new JLabel("                   IBAN: ");
 		ibanTextField = new JTextField(20); //enter the iban here to log in
 		JLabel emptyLabel3 = new JLabel("                              ");
 		JLabel passwordLabel = new JLabel("                   Password: ");
-		passwordTextField = new JTextField(20); //enter the password here to log in
+		passwordTextField = new JPasswordField(20); //enter the password here to log in
 		JLabel emptyLabel4 = new JLabel("                    ");
 		logInButton = new JButton("       Log in      "); //performs the operation
 		logInPanel.add(ibanLabel); logInPanel.add(ibanTextField); logInPanel.add(emptyLabel3);
@@ -77,8 +78,17 @@ public class UserFrame extends JFrame {
 		return fiscalCodeTextField.getText();
 	}
 
+	public JTextField getFiscalCodeTextField() {
+		return fiscalCodeTextField;
+	}
+
+	@SuppressWarnings("deprecation")
 	public String getSetPassword() {
 		return setPasswordTextField.getText();
+	}
+
+	public JPasswordField getSetPasswordTextField() {
+		return setPasswordTextField;
 	}
 
 	public JButton getCreateAccountButton() {
@@ -89,8 +99,17 @@ public class UserFrame extends JFrame {
 		return ibanTextField.getText();
 	}
 
+	public JTextField getIbanTextField() {
+		return ibanTextField;
+	}
+
+	@SuppressWarnings("deprecation")
 	public String getPassword() {
 		return passwordTextField.getText();
+	}
+
+	public JPasswordField getPasswordTextField() {
+		return passwordTextField;
 	}
 
 	public JButton getLogInButton() {

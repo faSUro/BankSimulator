@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import it.unipv.po.bankmodel.BankModel;
@@ -16,7 +17,7 @@ import it.unipv.po.bankmodel.account.Account;
 public class AccountStateDisplayer extends JFrame implements Observer {
 	
 	public static int WIDTH = 600;
-	public static int HEIGHT = 300;
+	public static int HEIGHT = 342;
 	
 	private JTextArea accountStateText;
 	
@@ -29,7 +30,9 @@ public class AccountStateDisplayer extends JFrame implements Observer {
 		contentPane.add(panel);
 		
 		accountStateText = new JTextArea(20, 50);
-		panel.add(accountStateText);
+		JScrollPane scrollPane = new JScrollPane(accountStateText); //the text area is scrollable
+		
+		panel.add(scrollPane);
 		
 		setLocationRelativeTo(null); //the frame will be in the center of the screen
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //when the frame is closed it's

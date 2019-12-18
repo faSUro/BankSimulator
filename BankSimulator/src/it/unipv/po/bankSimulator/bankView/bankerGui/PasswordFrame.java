@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
 public class PasswordFrame extends JFrame {
@@ -16,7 +16,7 @@ public class PasswordFrame extends JFrame {
 	public static final int HEIGHT = 200;
 	
 	private String type;
-	private JTextField passTextField;
+	private JPasswordField passTextField;
 	private JButton okButton;
 	
 	public PasswordFrame(String t) {
@@ -31,18 +31,18 @@ public class PasswordFrame extends JFrame {
 		
 		panel.setLayout(new GridLayout(3,1));
 		
-		JPanel emptyPanel = new JPanel();
-		JPanel passPanel = new JPanel();
+		JPanel emptyPanel = new JPanel(); //used to get a better looking layout
+		JPanel passPanel = new JPanel(); //allows to set or enter the password
 		
 		JLabel passLabel = new JLabel(type + ": ");
-		passTextField = new JTextField(20);
-		okButton = new JButton("  Ok  ");
+		passTextField = new JPasswordField(20); //enter the password here
+		okButton = new JButton("  Ok  "); //button to set/enter the password and close the frame
 		passPanel.add(passLabel); passPanel.add(passTextField); 
 		passPanel.add(okButton);
 		
 		panel.add(emptyPanel); panel.add(passPanel);
 		
-		setLocationRelativeTo(null);
+		setLocationRelativeTo(null); //the frame will be in the center of the screen
 		setVisible(true);	
 	}
 
@@ -50,6 +50,7 @@ public class PasswordFrame extends JFrame {
 		return type;
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getPassword() {
 		return passTextField.getText();
 	}

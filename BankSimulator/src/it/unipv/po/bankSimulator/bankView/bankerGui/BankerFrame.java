@@ -89,6 +89,10 @@ public class BankerFrame extends JFrame {
 		return fiscalCodeTextField.getText();
 	}
 
+	public JTextField getFiscalCodeTextField() {
+		return fiscalCodeTextField;
+	}
+
 	public String getAccountType() {
 		return (String)accountTypeSelection.getSelectedItem();
 	}
@@ -101,8 +105,16 @@ public class BankerFrame extends JFrame {
 		return ibanTextField.getText();
 	}
 
+	public JTextField getIbanTextField() {
+		return ibanTextField;
+	}
+
 	public double getAmount() {
 		return Double.parseDouble(amountTextField.getText());
+	}
+
+	public JTextField getAmountTextField() {
+		return amountTextField;
 	}
 
 	public JButton getSubmitButton() {
