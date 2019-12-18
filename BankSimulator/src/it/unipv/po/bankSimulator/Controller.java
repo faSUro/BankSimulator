@@ -7,6 +7,7 @@ import it.unipv.po.bankSimulator.bankView.BankCreatorFrame;
 import it.unipv.po.bankSimulator.bankView.IbanDisplayer;
 import it.unipv.po.bankSimulator.bankView.bankerGui.AccountStateDisplayer;
 import it.unipv.po.bankSimulator.bankView.bankerGui.BankerFrame;
+import it.unipv.po.bankSimulator.bankView.bankerGui.PasswordFrame;
 import it.unipv.po.bankSimulator.bankView.userGui.BalanceDisplayer;
 import it.unipv.po.bankSimulator.bankView.userGui.LoggedInFrame;
 import it.unipv.po.bankSimulator.bankView.userGui.UserFrame;
@@ -83,7 +84,11 @@ public class Controller {
 					bankModel.addAccount(fiscalCode, AccountType.DEPOSIT);
 					break;
 				case "Web account":
+					String iban = bankModel.genIban();
 					bankModel.addAccount(fiscalCode, AccountType.WEB);
+					
+					PasswordFrame setPass = new PasswordFrame("Set password");
+					setPasswordListeners(setPass, iban, 0.0);
 					break;
 				}
 			}
@@ -91,11 +96,20 @@ public class Controller {
 		
 		/*
 		 * This listener allows to perform operations on the (non web type) accounts 
-		 * by filling out the IBAN/amount form and then clicking the submitButton. 
+		 * by filling out the IBAN/amount form and then clicking the submitButton.
+		 * If it's a web type account, it asks the password. 
 		 */
 		bankerFrame.getSubmitButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				bankModel.operation(bankerFrame.getIban(), bankerFrame.getAmount());
+				String iban = bankerFrame.getIban();
+				double amount = bankerFrame.getAmount();
+				
+				if (bankModel.getAccount(iban).getAccountType() == AccountType.WEB) {
+					PasswordFrame enterPass = new PasswordFrame("Enter password");
+					setPasswordListeners(enterPass, iban, amount);
+				} else {
+					bankModel.operation(iban, amount);
+				}
 			}
 		});
 	}
@@ -152,6 +166,25 @@ public class Controller {
 		li.getSubmitButton().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				bankModel.operation(iban, li.getAmount());
+			}
+		});
+	}
+	
+	public void setPasswordListeners(PasswordFrame passFrame, String iban, double amount) {
+		/*
+		 * 
+		 */
+		passFrame.getOkButton().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switch (passFrame.getTypeOfPassFrame()) {
+				case "Set password":
+					(((WebAccount) bankModel.getAccount(iban))).changePassword("changeme", passFrame.getPassword());
+					break;
+				case "Enter password":
+					((WebAccount) bankModel.getAccount(iban)).logIn(passFrame.getPassword());
+					bankModel.operation(iban, amount);
+				}
+				passFrame.dispose();
 			}
 		});
 	}
