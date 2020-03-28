@@ -20,7 +20,6 @@ public class Start {
 	public static void main(String[] args) {
 		
 		new Controller(new BankModel("Default name"), new BankCreatorFrame());
-		System.out.println("Commit test 2");
 		
 	}
 
